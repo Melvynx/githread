@@ -10,7 +10,7 @@ const main = async () => {
     const user = {
       username: faker.internet.userName(),
       image: faker.image.avatar(),
-      name: faker.name.firstName(),
+      name: faker.person.firstName(),
       bio: faker.lorem.paragraph(),
       link: faker.internet.url(),
       email: faker.internet.email(),

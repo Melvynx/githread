@@ -3,9 +3,29 @@ import { getAuthSession } from '@/src/auth/nextauth-option';
 import { prisma } from '@/src/db/prisma';
 import { getUserProfile } from '@/src/db/query/user.query';
 import { Post } from '@/src/features/post/Post';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Profile } from './Profile';
+import { followUser } from './follow.action';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { userId: string };
+}): Promise<Metadata> {
+  const user = await getUserProfile(params.userId);
+
+  if (!user) {
+    return {
+      title: 'User not found',
+    };
+  }
+
+  return {
+    title: `${user.name} (@${user.username})`,
+  };
+}
 
 export default async function User({
   params,
@@ -47,7 +67,17 @@ export default async function User({
           </Link>
         ) : null}
         {!isCurrent ? (
-          <Button variant="outline">{isFollower ? 'Unfollow' : 'Follow'}</Button>
+          <form>
+            <Button
+              formAction={async () => {
+                'use server';
+                await followUser(user.id);
+              }}
+              variant="outline"
+            >
+              {isFollower ? 'Unfollow' : 'Follow'}
+            </Button>
+          </form>
         ) : null}
       </div>
       <div className="divide-y divide-accent">

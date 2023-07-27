@@ -1,4 +1,5 @@
 import { Prisma } from '@prisma/client';
+import { cache } from 'react';
 import { prisma } from '../prisma';
 import { postSelectQuery } from './post.query';
 
@@ -12,7 +13,7 @@ const userQuery = {
   link: true,
 } satisfies Prisma.UserSelect;
 
-export const getUserProfile = (userId: string) => {
+export const getUserProfile = cache((userId: string) => {
   return prisma.user.findUnique({
     where: {
       id: userId,
@@ -51,7 +52,7 @@ export const getUserProfile = (userId: string) => {
       },
     },
   });
-};
+});
 
 export const getUserEdit = (userId: string) => {
   return prisma.user.findUnique({
