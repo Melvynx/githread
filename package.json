@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prisma:migrate": "npx prisma migrate dev --preview-feature",
-    "prisma:seed": "prisma db seed"
+    "prisma:seed": "prisma db seed",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
