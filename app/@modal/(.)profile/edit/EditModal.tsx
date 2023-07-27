@@ -3,7 +3,7 @@
 import { ProfileForm, ProfileFormType } from '@/app/profile/edit/ProfileForm';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { UserEdit } from '@/src/db/query/user.query';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export const EditModal = ({
   user,
@@ -13,10 +13,11 @@ export const EditModal = ({
   editProfile: (values: ProfileFormType) => Promise<string | void>;
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <Dialog
-      open={true}
+      open={pathname?.includes('/edit')}
       onOpenChange={() => {
         router.back();
       }}

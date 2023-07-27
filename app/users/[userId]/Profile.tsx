@@ -53,7 +53,9 @@ export const Profile = ({ user, children }: ProfileProps) => {
         {user.link ? (
           <>
             <p className="text-muted-foreground">{' ‧ '}</p>
-            <Link href={user.link}>{removeHttp(user.link)}</Link>
+            <Link className="text-muted-foreground hover:underline" href={user.link}>
+              {removeHttp(user.link)}
+            </Link>
           </>
         ) : null}
       </div>

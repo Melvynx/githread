@@ -3,7 +3,7 @@
 import { WritePostForm, WritePostFormType } from '@/app/write/WritePostForm';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { User } from '@prisma/client';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export const WriteModal = ({
   user,
@@ -13,9 +13,11 @@ export const WriteModal = ({
   createPost: (values: WritePostFormType) => Promise<string | void>;
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
+
   return (
     <Dialog
-      open={true}
+      open={pathname?.includes('/write')}
       onOpenChange={() => {
         router.back();
       }}
@@ -25,7 +27,6 @@ export const WriteModal = ({
           user={user}
           onSubmit={async (values) => {
             const result = await createPost(values);
-            router.back();
             return result;
           }}
         />
