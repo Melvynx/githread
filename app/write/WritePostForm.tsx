@@ -31,15 +31,12 @@ export const WritePostForm = ({ user, onSubmit }: WritePostFormProps) => {
   });
   const router = useRouter();
 
-  console.log(form.formState.errors);
-
   return (
     <div className="w-full">
       <PostWrapper user={user} className="w-full">
         <Form
           form={form}
           onSubmit={async (values) => {
-            console.log('SUbmit', values);
             const url = await onSubmit(values);
             if (url) {
               router.push(url);

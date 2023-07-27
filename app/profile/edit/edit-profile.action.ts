@@ -7,8 +7,6 @@ import { ProfileFormType } from './ProfileForm';
 export const editProfile = async (values: ProfileFormType) => {
   const session = await getAuthSession();
 
-  console.log({ session });
-
   if (!session) {
     throw new Error('You must be logged in to edit your profile');
   }

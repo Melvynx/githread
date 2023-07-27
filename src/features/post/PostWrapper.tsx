@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Loader } from '@/components/ui/loader';
 import { PostHome } from '@/src/db/query/post.query';
 import clsx from 'clsx';
 import { MoreHorizontal } from 'lucide-react';
@@ -36,7 +38,12 @@ export const PostWrapper = ({
 
   return (
     <div className={clsx('flex w-full flex-row items-start p-4', className)}>
-      <img src={user.image ?? ''} alt="user" className="h-10 w-10 rounded-full" />
+      <Avatar size="default">
+        {user.image ? <AvatarImage src={user.image} alt="user" /> : null}
+        <AvatarFallback>
+          <Loader />
+        </AvatarFallback>
+      </Avatar>
       <div className="ml-4 flex w-full flex-col gap-2">
         {postId ? <Link href={`/users/${user.id}`}>{postHeader}</Link> : postHeader}
         {children}

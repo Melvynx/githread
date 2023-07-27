@@ -12,7 +12,6 @@ type ProfileProps = PropsWithChildren<{
 }>;
 
 export const Profile = ({ user, children }: ProfileProps) => {
-  console.log({ user });
   return (
     <div className="mt-4">
       <div className="flex gap-2 items-start justify-between">

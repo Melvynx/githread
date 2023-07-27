@@ -53,7 +53,6 @@ export const ProfileForm = ({ onSubmit, user }: ProfileFormProps) => {
       className="space-y-4"
       form={form}
       onSubmit={async (values) => {
-        console.log('Submit', values);
         const url = await onSubmit(values);
 
         if (url) {
