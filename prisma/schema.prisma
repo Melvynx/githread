@@ -61,7 +61,7 @@ model User {
   createdAt DateTime @default(now())
   posts     Post[]
   likes     Like[]
-  follows   Follow[] @relation("follower")
+  followers Follow[] @relation("follower")
   followed  Follow[] @relation("followed")
 }
 

@@ -38,7 +38,7 @@ export const PostWrapper = ({
     <div className={clsx('flex w-full flex-row items-start p-4', className)}>
       <img src={user.image ?? ''} alt="user" className="h-10 w-10 rounded-full" />
       <div className="ml-4 flex w-full flex-col gap-2">
-        {postId ? <Link href={`/posts/${postId}`}>{postHeader}</Link> : postHeader}
+        {postId ? <Link href={`/users/${user.id}`}>{postHeader}</Link> : postHeader}
         {children}
       </div>
     </div>

@@ -1,29 +1,76 @@
 import { Prisma } from '@prisma/client';
 import { prisma } from '../prisma';
 
-export const get20LastPosts = () =>
+export const postSelectQuery = (userId?: string) =>
+  ({
+    id: true,
+    content: true,
+    createdAt: true,
+    user: {
+      select: {
+        image: true,
+        username: true,
+        name: true,
+        id: true,
+      },
+    },
+    _count: {
+      select: {
+        likes: true,
+        replies: true,
+      },
+    },
+    likes: {
+      select: {
+        userId: true,
+      },
+      where: {
+        userId: userId ?? 'error',
+      },
+    },
+  } satisfies Prisma.PostSelect);
+
+export const get20LastPosts = (userId?: string) =>
   prisma.post.findMany({
     take: 20,
+
     orderBy: {
       createdAt: 'desc',
     },
+    where: {
+      parentId: null,
+    },
+    select: postSelectQuery(userId),
+  });
+
+export const getPostView = (id: string, userId?: string) =>
+  prisma.post.findUnique({
+    where: {
+      id,
+    },
     select: {
-      id: true,
-      content: true,
-      createdAt: true,
-      user: {
+      ...postSelectQuery(userId),
+      replies: {
         select: {
-          image: true,
-          username: true,
-          name: true,
+          ...postSelectQuery(userId),
         },
       },
-      _count: {
+
+      parent: {
         select: {
-          likes: true,
-          replies: true,
+          ...postSelectQuery(userId),
         },
       },
+    },
+  });
+
+export const getPost = (id: string, userId?: string) =>
+  prisma.post.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      ...postSelectQuery(userId),
     },
   });
 
