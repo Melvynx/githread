@@ -22,9 +22,10 @@ console.log('Hello world');
 
 export default function page() {
   console.log('RCC');
+
   return (
     <div className="flex flex-col gap-4 mt-4 items-start">
-      <div className="prose prose-invert prose-pre:bg-accent">
+      <div className="prose prose-pre:bg-accent">
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
     </div>

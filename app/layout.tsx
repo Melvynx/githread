@@ -9,7 +9,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Githread ‧ Home',
+  title: 'Home',
   description: 'The Twitter application for Github community.',
 };
 
@@ -25,7 +25,9 @@ export default function RootLayout({ children, modal }: LayoutProps) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex flex-col h-full">
             <Header />
-            <div className="flex-1 max-w-lg m-auto py-14 w-full">{children}</div>
+            <div className="container flex-1 max-w-lg m-auto py-14 w-full">
+              {children}
+            </div>
             <Footer />
           </div>
           {modal}

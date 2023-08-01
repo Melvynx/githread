@@ -24,7 +24,7 @@ export default function page() {
   );
 }
 
-export const CardPlaceholder = () => {
+const CardPlaceholder = () => {
   return (
     <Card>
       <CardHeader>
