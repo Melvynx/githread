@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { prisma } from '@/src/db/prisma';
-import NameLengthChart from './NameLengthGraph';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { prisma } from "@/src/db/prisma";
+import NameLengthChart from "./NameLengthGraph";
 
 export const NameLength = async () => {
   const users = await prisma.user.findMany({

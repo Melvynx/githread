@@ -1,8 +1,8 @@
-import { prisma } from '@/src/db/prisma';
-import { CardClient } from './CardClient';
+import { prisma } from "@/src/db/prisma";
+import { CardClient } from "./CardClient";
 
 export default async function page() {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({});
   return (
     <div className="mt-4">
       <ul className="flex flex-col gap-4">

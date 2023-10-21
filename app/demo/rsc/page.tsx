@@ -1,6 +1,4 @@
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-
-// markdown of 50 lines
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const markdown = `# My article about how to learn code
 
@@ -21,11 +19,9 @@ console.log('Hello world');
 `;
 
 export default function page() {
-  console.log('RCC');
-
   return (
     <div className="flex flex-col gap-4 mt-4 items-start">
-      <div className="prose prose-pre:bg-accent">
+      <div className="prose">
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
     </div>

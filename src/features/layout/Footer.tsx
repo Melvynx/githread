@@ -1,6 +1,6 @@
 import { buttonVariants } from '@/components/ui/button';
 import clsx from 'clsx';
-import { Home, PenSquare, User } from 'lucide-react';
+import { Home } from 'lucide-react';
 import Link from 'next/link';
 
 export const Footer = () => {
@@ -11,20 +11,6 @@ export const Footer = () => {
         className={clsx(buttonVariants({ variant: 'outline' }), 'flex-1')}
       >
         <Home size={16} />
-      </Link>
-
-      <Link
-        href="/write"
-        className={clsx(buttonVariants({ variant: 'outline' }), 'flex-1')}
-      >
-        <PenSquare size={16} />
-      </Link>
-
-      <Link
-        href="/profile"
-        className={clsx(buttonVariants({ variant: 'outline' }), 'flex-1')}
-      >
-        <User size={16} />
       </Link>
     </div>
   );

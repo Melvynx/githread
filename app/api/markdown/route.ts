@@ -1,6 +1,4 @@
-"use client";
-
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import { NextResponse } from "next/server";
 
 const markdown = `# My article about how to learn code
 
@@ -20,12 +18,12 @@ console.log('Hello world');
 \`\`\`
 `;
 
-export default function page() {
-  return (
-    <div className="flex flex-col gap-4 mt-4 items-start">
-      <div className="prose">
-        <ReactMarkdown>{markdown}</ReactMarkdown>
-      </div>
-    </div>
-  );
-}
+export const GET = async () => {
+  await new Promise((r) => {
+    setTimeout(() => {
+      r("");
+    }, 1000);
+  });
+
+  return NextResponse.json({ markdown });
+};
